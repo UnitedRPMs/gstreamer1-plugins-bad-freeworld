@@ -7,7 +7,7 @@
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
 Version:        1.8.1
-Release:        2%{?dist}
+Release:        4%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -56,6 +56,8 @@ BuildRequires:	openh264-devel
 #
 # For autoreconf
 BuildRequires: libtool
+BuildRequires: autoconf
+BuildRequires: nasm
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -64,6 +66,13 @@ operate on media data.
 This package contains plug-ins that have licensing issues, aren't tested
 well enough, or the code is not of good enough quality.
 
+%package -n 	gstreamer1-plugin-openh264
+Summary:        GStreamer H.264 plugin
+
+
+%description -n gstreamer1-plugin-openh264
+GStreamer is a streaming media framework, based on graphs of elements which
+operate on media data.
 
 %prep
 %setup -q -n gst-plugins-bad-%{version}
@@ -122,11 +131,17 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstvoamrwbenc.so
 %{_libdir}/gstreamer-1.0/libgstfaac.so
 %{_libdir}/gstreamer-1.0/libgstx265.so
+
+%files -n gstreamer1-plugin-openh264
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
-
-
 %changelog
+
+* Mon Jun 06 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.8.1-4
+- Added, sub-package gstreamer1-plugin-openh264 and avoid conflicts
+
+* Sat Jun 4 2016 Pavlo Rudyi <paulcarroty At riseup.net> 1.8.1-3
+- Disabled openh264
 
 * Sat Apr 23 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.8.1-2
 - Added -Wno-deprecated-declarations
