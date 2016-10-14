@@ -6,7 +6,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.9.1
+Version:        1.9.2
 Release:        1%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -80,7 +80,8 @@ autoreconf -ivf
 
 
 %build
-
+export OPENH264_CFLAGS="-I%{_includedir}"
+export OPENH264_LIBS="-L%{_libdir} -lopenh264"
 export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
 
 %configure --disable-static --enable-experimental --enable-gtk-doc \
@@ -136,6 +137,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
+
+* Thu Oct 06 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.9.2-1
+- Updated to 1.9.2
 
 * Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.9.1-1
 - Updated to 1.9.1
