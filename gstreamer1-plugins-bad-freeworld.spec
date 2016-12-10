@@ -6,7 +6,7 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.10.0
+Version:        1.10.2
 Release:        1%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -31,27 +31,27 @@ BuildRequires:	x265-devel
 BuildRequires:	faac-devel
 #BuildRequires:  vo-aacenc-devel
 BuildRequires:  libmpg123-devel
-# BuildRequires: libusbx-devel
+BuildRequires: libusbx-devel
 # New Make Depends
-BuildRequires:	schroedinger-devel 
-BuildRequires:	libexif-devel 
-BuildRequires:	libdvdread-devel 
-BuildRequires:	libvdpau-devel 
-BuildRequires:	libmpeg2-devel 
-BuildRequires:	valgrind-devel 
-BuildRequires:	wildmidi-devel 
+BuildRequires:	schroedinger-devel
+BuildRequires:	libexif-devel
+BuildRequires:	libdvdread-devel
+BuildRequires:	libvdpau-devel
+BuildRequires:	libmpeg2-devel
+BuildRequires:	valgrind-devel
+BuildRequires:	wildmidi-devel
 BuildRequires:	librsvg2-devel
-BuildRequires:	gobject-introspection-devel 
-BuildRequires:	gtk-doc 
-BuildRequires:	gtk3-devel 
-BuildRequires:	clutter-devel 
-BuildRequires:	libtiger-devel 
-BuildRequires:	ladspa-devel 
-BuildRequires:	openal-soft-devel 
-BuildRequires:	libusb-devel 
-BuildRequires:	qt5-qtquick1-devel 
-BuildRequires:	qt5-qtx11extras-devel 
-BuildRequires:	qt5-qtwayland-devel 
+BuildRequires:	gobject-introspection-devel
+BuildRequires:	gtk-doc
+BuildRequires:	gtk3-devel
+BuildRequires:	clutter-devel
+BuildRequires:	libtiger-devel
+BuildRequires:	ladspa-devel
+BuildRequires:	openal-soft-devel
+BuildRequires:	libusb-devel
+BuildRequires:	qt5-qtquick1-devel
+BuildRequires:	qt5-qtx11extras-devel
+BuildRequires:	qt5-qtwayland-devel
 BuildRequires:	openh264-devel
 #
 # For autoreconf
@@ -87,10 +87,15 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
 %configure --disable-static --enable-experimental --enable-gtk-doc \
     --with-package-name="gst-plugins-bad 1.0 rpmfusion rpm" \
     --with-package-origin="http://rpmfusion.org/" \
-    --with-gtk=3.0
+    --with-gtk=3.0 \
+    --enable-debug \
+    --enable-experimental
 
   # https://bugzilla.gnome.org/show_bug.cgi?id=655517
-  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+  # sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+  # Don't use rpath!
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
 for i in %{gstdirs} %{extdirs}; do
     pushd $i
@@ -106,7 +111,7 @@ for i in %{gstdirs} %{extdirs}; do
     make install V=2 DESTDIR=$RPM_BUILD_ROOT
     popd
 done
- 
+
 rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 
 
@@ -137,8 +142,8 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
-* Tue Nov 15 2016 Pavlo Rudyi <paulcarroty At riseup.net> 1.10.0-1
-- Updated to 1.10.0
+* Tue Nov 15 2016 Pavlo Rudyi <paulcarroty At riseup.net> 1.10.2-1
+- Updated to 1.10.2
 
 * Thu Oct 06 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.9.2-1
 - Updated to 1.9.2
