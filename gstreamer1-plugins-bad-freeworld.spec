@@ -1,6 +1,6 @@
 # which plugins to actually build and install
 %global gstdirs gst/dvbsuboverlay gst/dvdspu gst/siren
-%global extdirs ext/dts ext/faad ext/libmms ext/mpeg2enc ext/mplex ext/rtmp ext/voamrwbenc ext/x265/ ext/openh264/ ext/faac/ ext/dts/ ext/rtmp/
+%global extdirs ext/dts ext/faad ext/libmms ext/mpeg2enc ext/mplex ext/rtmp ext/voamrwbenc ext/x265/ ext/openh264/ ext/dts/ ext/rtmp/
 
 %global         majorminor 1.0
 
@@ -28,7 +28,6 @@ BuildRequires:  libmimic-devel
 BuildRequires:  librtmp-devel
 BuildRequires:  vo-amrwbenc-devel
 BuildRequires:	x265-devel
-BuildRequires:	faac-devel
 #BuildRequires:  vo-aacenc-devel
 BuildRequires:  libmpg123-devel
 BuildRequires: libusbx-devel
@@ -135,7 +134,6 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstmplex.so
 %{_libdir}/gstreamer-1.0/libgstrtmp.so
 %{_libdir}/gstreamer-1.0/libgstvoamrwbenc.so
-%{_libdir}/gstreamer-1.0/libgstfaac.so
 %{_libdir}/gstreamer-1.0/libgstx265.so
 
 %files -n gstreamer1-plugin-openh264
