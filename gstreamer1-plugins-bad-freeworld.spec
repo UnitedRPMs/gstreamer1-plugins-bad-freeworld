@@ -29,7 +29,11 @@ BuildRequires:  librtmp-devel
 BuildRequires:  vo-amrwbenc-devel
 BuildRequires:	x265-devel
 #BuildRequires:  vo-aacenc-devel
-BuildRequires:  libmpg123-devel
+%if 0%{?fedora} <= 24
+BuildRequires:	libmpg123-devel
+%else
+BuildRequires:	mpg123-devel
+%endif
 BuildRequires: libusbx-devel
 # New Make Depends
 BuildRequires:	schroedinger-devel
