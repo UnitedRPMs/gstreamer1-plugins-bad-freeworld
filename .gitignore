@@ -1,0 +1,6 @@
+BUILD/*
+BUILDROOT/*
+RPMS/*
+SPECS/*
+SRPMS/*
+gst-plugins-bad-*.tar.xz
