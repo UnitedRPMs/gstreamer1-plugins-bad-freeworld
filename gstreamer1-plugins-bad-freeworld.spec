@@ -6,8 +6,8 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.11.2
-Release:        3%{?dist}
+Version:        1.11.90
+Release:        2%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -139,6 +139,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
+
+* Thu Apr 20 2017 David Vásquez <davidva AT tutanota DOT com> 1.11.90-2
+- Updated to 1.11.90-2
 
 * Fri Mar 31 2017 David Vásquez <davidjeremias82 AT gmail DOT com> 1.11.2-3
 - Rebuilt for openh264
