@@ -87,6 +87,7 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     --with-package-origin="http://rpmfusion.org/" \
     --with-gtk=3.0 \
     --enable-debug \
+    --enable-silent-rules \
     --enable-experimental
 
   # https://bugzilla.gnome.org/show_bug.cgi?id=655517
@@ -97,7 +98,7 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
 for i in %{gstdirs} %{extdirs}; do
     pushd $i
-    make %{?_smp_mflags} V=2
+    make %{?_smp_mflags} V=0
     popd
 done
 
@@ -106,7 +107,7 @@ done
 
 for i in %{gstdirs} %{extdirs}; do
     pushd $i
-    make install V=2 DESTDIR=$RPM_BUILD_ROOT
+    make install V=0 DESTDIR=$RPM_BUILD_ROOT
     popd
 done
 
