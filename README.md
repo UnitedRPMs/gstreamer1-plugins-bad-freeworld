@@ -4,7 +4,7 @@
  
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
  
-Version:        1.11.91
+Version:        1.12.0
  
 License:        LGPLv2+
  
