@@ -47,7 +47,7 @@ BuildRequires:	libtiger-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	openal-soft-devel
 BuildRequires:	libusb-devel
-BuildRequires:	qt5-qtquick1-devel
+# BuildRequires:	qt5-qtquick1-devel
 BuildRequires:	qt5-qtx11extras-devel
 BuildRequires:	qt5-qtwayland-devel
 BuildRequires:	openh264-devel
