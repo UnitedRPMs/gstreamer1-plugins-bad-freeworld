@@ -6,8 +6,8 @@
 
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.14.4
-Release:        8%{?dist}
+Version:        1.15.1
+Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -128,9 +128,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstdtsdec.so
 %{_libdir}/gstreamer-1.0/libgstfaad.so
 %{_libdir}/gstreamer-1.0/libgstmms.so
-#%{_libdir}/gstreamer-1.0/libgstmimic.so
 %{_libdir}/gstreamer-1.0/libgstmpeg2enc.so
-#%{_libdir}/gstreamer-1.0/libgstmpg123.so
 %{_libdir}/gstreamer-1.0/libgstmplex.so
 %{_libdir}/gstreamer-1.0/libgstrtmp.so
 %{_libdir}/gstreamer-1.0/libgstvoamrwbenc.so
@@ -140,6 +138,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
+
+* Fri Jan 18 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.15.1-7  
+- Updated to 1.15.1-7
 
 * Fri Oct 12 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.14.4-8  
 - Automatic Mass Rebuild
