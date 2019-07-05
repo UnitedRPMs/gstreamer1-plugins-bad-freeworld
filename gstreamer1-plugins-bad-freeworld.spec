@@ -7,11 +7,14 @@
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
 Version:        1.16.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.xz
+Patch:		01_fix-modplug-linking.patch
+# openh264 2.0.0 fix
+Patch1:		https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/commit/d2f6facbfb89f13a891e710b44e1561570de006a.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  check
@@ -50,7 +53,7 @@ BuildRequires:	libusb-devel
 # BuildRequires:	qt5-qtquick1-devel
 BuildRequires:	qt5-qtx11extras-devel
 BuildRequires:	qt5-qtwayland-devel
-BuildRequires:	openh264-devel
+BuildRequires:	openh264-devel >= 2.0.0
 #
 # For autoreconf
 BuildRequires: libtool
@@ -73,7 +76,7 @@ GStreamer is a streaming media framework, based on graphs of elements which
 operate on media data.
 
 %prep
-%setup -q -n gst-plugins-bad-%{version}
+%autosetup -n gst-plugins-bad-%{version} -p1
 autoreconf -ivf
 
 
@@ -138,6 +141,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
+
+* Tue Jun 25 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.0-9
+- Rebuilt for openh264
 
 * Sat Jun 22 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.0-8
 - Rebuilt for x265
