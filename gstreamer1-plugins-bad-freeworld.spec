@@ -7,7 +7,7 @@
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
 Version:        1.16.0
-Release:        9%{?dist}
+Release:        10%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -30,7 +30,7 @@ BuildRequires:  twolame-devel
 BuildRequires:  libmimic-devel
 BuildRequires:  librtmp-devel
 BuildRequires:  vo-amrwbenc-devel
-BuildRequires:	x265-devel >= 3.0
+BuildRequires:	x265-devel >= 3.1.2
 #BuildRequires:  vo-aacenc-devel
 BuildRequires: libusbx-devel
 # New Make Depends
@@ -141,6 +141,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
+
+* Sat Aug 03 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.0-10
+- Rebuilt for x265
 
 * Tue Jun 25 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.0-9
 - Rebuilt for openh264
