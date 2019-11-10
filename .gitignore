@@ -3,5 +3,6 @@ BUILDROOT/*
 RPMS/*
 SPECS/*
 SRPMS/*
-gst-plugins-bad-*.tar.xz
+*.tar.xz
 .directory
+*.rpm
