@@ -29,7 +29,7 @@ BuildRequires:  twolame-devel
 BuildRequires:  libmimic-devel
 BuildRequires:  librtmp-devel
 BuildRequires:  vo-amrwbenc-devel
-BuildRequires:	x265-devel >= 3.2.1
+BuildRequires:	x265-devel >= 3.3
 #BuildRequires:  vo-aacenc-devel
 BuildRequires: libusbx-devel
 # New Make Depends
