@@ -2,12 +2,14 @@
 %global gstdirs gst/dvbsuboverlay gst/dvdspu gst/siren
 %global extdirs ext/dts ext/faad ext/libmms ext/mpeg2enc ext/mplex ext/rtmp ext/voamrwbenc ext/x265/ ext/openh264/ ext/dts/ ext/rtmp/
 
+%define _legacy_common_support 1
+
 %global         majorminor 1.0
 
 Summary:        GStreamer 1.0 streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
 Version:        1.16.2
-Release:        8%{?dist}
+Release:        9%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -52,7 +54,7 @@ BuildRequires:	libusb-devel
 # BuildRequires:	qt5-qtquick1-devel
 BuildRequires:	qt5-qtx11extras-devel
 BuildRequires:	qt5-qtwayland-devel
-BuildRequires:	openh264-devel >= 2.0.0
+BuildRequires:	openh264-devel >= 2.1.0
 #
 # For autoreconf
 BuildRequires: libtool
@@ -140,6 +142,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %{_libdir}/gstreamer-1.0/libgstopenh264.so
 
 %changelog
+
+* Tue Mar 24 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-9
+- Rebuilt for openh264
 
 * Mon Feb 24 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-8
 - Rebuilt for x265
