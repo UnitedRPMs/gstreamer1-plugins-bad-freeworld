@@ -61,6 +61,7 @@ BuildRequires: nasm
 
 BuildRequires:	meson
 BuildRequires:	cmake
+BuildRequires:  gcc-c++
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	libltc-devel
 BuildRequires:  lcms2-devel
