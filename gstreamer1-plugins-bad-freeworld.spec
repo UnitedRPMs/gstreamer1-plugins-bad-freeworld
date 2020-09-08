@@ -7,7 +7,7 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.17.2
+Version:        1.17.90
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -39,6 +39,7 @@ BuildRequires:	libdvdread-devel
 BuildRequires:	libvdpau-devel
 BuildRequires:	libmpeg2-devel
 BuildRequires:	valgrind-devel
+BuildRequires:	libva-devel
 BuildRequires:	wildmidi-devel
 BuildRequires:	librsvg2-devel
 BuildRequires:	gobject-introspection-devel
@@ -118,10 +119,10 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     -D sctp=disabled -D svthevcenc=disabled -D voaacenc=disabled \
     -D zxing=disabled -D wpe=disabled -D x11=disabled \
     -D openh264=enabled -D srt=disabled -D openmpt=disabled \
-    -D lv2=disabled -D va=disabled -D spandsp=disabled \
+    -D lv2=disabled -D spandsp=disabled \
     -D openal=disabled -D vdpau=disabled -D uvch264=disabled \
     -D ltc=disabled -D vulkan=disabled -D wayland=disabled \
-    -D libdrm=disabled -D usb=disabled -D va=disabled \
+    -D libdrm=disabled -D usb=disabled \
     -D assrender=disabled -D bz2=disabled -D kate=disabled \
     -D magicleap=disabled -D aom=disabled -D bs2b=disabled \
     -D chromaprint=disabled -D curl=disabled -D fdkaac=disabled \
@@ -133,6 +134,9 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     -D soundtouch=disabled -D spandsp=disabled -D srt=disabled \
     -D srtp=disabled -D wildmidi=disabled -D zbar=disabled \
     -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled \
+    %if 0%{?fedora} <= 30
+    -D va=disabled -D examples=disabled \
+    %endif
     -D openssl=disabled
 
 %meson_build 
@@ -425,6 +429,27 @@ rm -f   %{buildroot}/%{_datadir}/gir-%{majorminor}/GstPlayer-%{majorminor}.gir
 rm -f   %{buildroot}/%{_datadir}/gir-%{majorminor}/GstTranscoder-%{majorminor}.gir
 rm -f   %{buildroot}/%{_datadir}/gir-%{majorminor}/GstWebRTC-%{majorminor}.gir
 
+rm -f	%{buildroot}/%{_libdir}/gstreamer-1.0/libgstva.so
+rm -f 	%{buildroot}/%{_libdir}/libgstadaptivedemux-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstbadaudio-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstcodecparsers-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstcodecs-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstinsertbin-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstisoff-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstmpegts-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstphotography-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstplayer-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstsctp-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgsturidownloader-%{majorminor}.so.*
+rm -f 	%{buildroot}/%{_libdir}/libgstwebrtc-%{majorminor}.so.*
+
+rm -f   %{buildroot}/%{_includedir}/gstreamer-1.0/gst/opencv/gstopencvutils.h
+rm -f   %{buildroot}/%{_includedir}/gstreamer-1.0/gst/opencv/gstopencvvideofilter.h
+rm -f   %{buildroot}/%{_includedir}/gstreamer-1.0/gst/opencv/opencv-prelude.h
+
+rm -f 	%{buildroot}/%{_libdir}/libgstopencv-1.0.so*
+
 
 rm -rf   %{buildroot}/%{_datadir}/locale/
 #
@@ -433,7 +458,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %doc AUTHORS COPYING.LIB NEWS README RELEASE
 # Take the whole dir for proper dir ownership (shared with other plugin pkgs)
 %{_datadir}/gstreamer-%{majorminor}
+%if 0%{?fedora} >= 31
 %{_bindir}/playout
+%endif
 
 # Plugins without external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstdvbsuboverlay.so
@@ -454,6 +481,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Tue Aug 25 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.90-7
+- Updated to 1.17.90
 
 * Fri Jul 10 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.2-7
 - Updated to 1.17.2
