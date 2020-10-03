@@ -7,7 +7,7 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.17.90
+Version:        1.18.0
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -119,7 +119,7 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     -D sctp=disabled -D svthevcenc=disabled -D voaacenc=disabled \
     -D zxing=disabled -D wpe=disabled -D x11=disabled \
     -D openh264=enabled -D srt=disabled -D openmpt=disabled \
-    -D lv2=disabled -D spandsp=disabled \
+    -D lv2=disabled -D spandsp=disabled -D examples=disabled \
     -D openal=disabled -D vdpau=disabled -D uvch264=disabled \
     -D ltc=disabled -D vulkan=disabled -D wayland=disabled \
     -D libdrm=disabled -D usb=disabled \
@@ -135,7 +135,7 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     -D srtp=disabled -D wildmidi=disabled -D zbar=disabled \
     -D webrtc=disabled -D webrtcdsp=disabled -D webp=disabled \
     %if 0%{?fedora} <= 30
-    -D va=disabled -D examples=disabled \
+    -D va=disabled \
     %endif
     -D openssl=disabled
 
@@ -458,9 +458,6 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %doc AUTHORS COPYING.LIB NEWS README RELEASE
 # Take the whole dir for proper dir ownership (shared with other plugin pkgs)
 %{_datadir}/gstreamer-%{majorminor}
-%if 0%{?fedora} >= 31
-%{_bindir}/playout
-%endif
 
 # Plugins without external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstdvbsuboverlay.so
@@ -481,6 +478,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Mon Sep 28 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.0-7
+- Updated 1.18.0
 
 * Tue Aug 25 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.90-7
 - Updated to 1.17.90
