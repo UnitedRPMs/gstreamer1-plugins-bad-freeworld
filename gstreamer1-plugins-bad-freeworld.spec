@@ -7,7 +7,7 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.18.0
+Version:        1.18.1
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -455,7 +455,7 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 #
 
 %files
-%doc AUTHORS COPYING.LIB NEWS README RELEASE
+%doc AUTHORS  NEWS README RELEASE
 # Take the whole dir for proper dir ownership (shared with other plugin pkgs)
 %{_datadir}/gstreamer-%{majorminor}
 
@@ -478,6 +478,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Thu Oct 29 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.1-7
+- Updated 1.18.1
 
 * Mon Sep 28 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.0-7
 - Updated 1.18.0
