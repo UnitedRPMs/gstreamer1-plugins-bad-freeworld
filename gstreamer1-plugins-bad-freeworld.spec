@@ -7,7 +7,7 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.18.2
+Version:        1.18.3
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -122,7 +122,7 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     -D lv2=disabled -D spandsp=disabled -D examples=disabled \
     -D openal=disabled -D vdpau=disabled -D uvch264=disabled \
     -D ltc=disabled -D vulkan=disabled -D wayland=disabled \
-    -D libdrm=disabled -D usb=disabled \
+    -D libdrm=disabled -D usb=disabled -D gobject-cast-checks=disabled \
     -D assrender=disabled -D bz2=disabled -D kate=disabled \
     -D magicleap=disabled -D aom=disabled -D bs2b=disabled \
     -D chromaprint=disabled -D curl=disabled -D fdkaac=disabled \
@@ -478,6 +478,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Mon Jan 25 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-7
+- Updated to 1.18.3
 
 * Mon Dec 07 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.2-7
 - Updated 1.18.2
