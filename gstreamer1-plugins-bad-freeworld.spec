@@ -8,7 +8,7 @@
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
 Version:        1.18.3
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -24,7 +24,7 @@ BuildRequires:  orc-devel
 BuildRequires:  libdca-devel
 BuildRequires:  faad2-devel >= 2.9.1
 BuildRequires:  libmms-devel
-BuildRequires:  mjpegtools-devel >= 2.0.0
+BuildRequires:  mjpegtools-devel >= 2.2.0
 BuildRequires:  twolame-devel
 BuildRequires:  libmimic-devel
 BuildRequires:  librtmp-devel
@@ -478,6 +478,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Mon Apr 19 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-8
+- Rebuilt for mjpegtools
 
 * Mon Jan 25 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-7
 - Updated to 1.18.3
