@@ -7,8 +7,8 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.18.3
-Release:        8%{?dist}
+Version:        1.18.4
+Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -98,11 +98,11 @@ operate on media data.
 
 
 %build
-export OPENH264_CFLAGS="-I%{_includedir}"
-export OPENH264_LIBS="-L%{_libdir} -lopenh264"
-export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
+#export OPENH264_CFLAGS="-I%{_includedir}"
+#export OPENH264_LIBS="-L%{_libdir} -lopenh264"
+#export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
 
-%meson \
+meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc \
     -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
     -D package-origin="https://unitedrpms.github.io" \
     -D doc=disabled -D faac=disabled -D msdk=disabled \
@@ -139,10 +139,10 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
     %endif
     -D openssl=disabled
 
-%meson_build 
+%meson_build -C build
 
 %install
-%meson_install 
+%meson_install -C build
 
    
 # Files exist in gstreamer1-plugins-bad-free, we don't need it here   
@@ -478,6 +478,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Tue Apr 20 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.4-7
+- Updated to 1.18.4
 
 * Mon Apr 19 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-8
 - Rebuilt for mjpegtools
