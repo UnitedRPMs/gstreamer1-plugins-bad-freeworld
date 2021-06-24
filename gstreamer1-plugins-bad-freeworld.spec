@@ -7,7 +7,7 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.18.4
+Version:        1.19.1
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -102,7 +102,7 @@ operate on media data.
 #export OPENH264_LIBS="-L%{_libdir} -lopenh264"
 #export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
 
-meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc \
+meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=%{_includedir} --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc \
     -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
     -D package-origin="https://unitedrpms.github.io" \
     -D doc=disabled -D faac=disabled -D msdk=disabled \
@@ -451,6 +451,34 @@ rm -f   %{buildroot}/%{_includedir}/gstreamer-1.0/gst/opencv/opencv-prelude.h
 rm -f 	%{buildroot}/%{_libdir}/libgstopencv-1.0.so*
 
 
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/mpegts/gst-atsc-descriptor.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/mpegts/gst-hdmv-section.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/mpegts/gst-isdb-descriptor.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay-media-info.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay-signal-adapter.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay-types.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay-video-overlay-video-renderer.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay-video-renderer.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay-visualization.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/gstplay.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/play-prelude.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/play/play.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/transcoder/gsttranscoder-signal-adapter.h
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/transcoder/transcoder-enumtypes.h
+
+rm -f %{buildroot}/%{_libdir}/girepository-1.0/GstPlay-1.0.typelib
+rm -f %{buildroot}/%{_libdir}/gstreamer-1.0/libgstcodecalpha.so
+rm -f %{buildroot}/%{_libdir}/libgstplay-1.0.so
+rm -f %{buildroot}/%{_libdir}/libgstplay-1.0.so.0
+rm -f %{buildroot}/%{_libdir}/libgstplay-1.0.so.0.1901.0
+rm -f %{buildroot}/%{_libdir}/libgstva-1.0.so
+rm -f %{buildroot}/%{_libdir}/libgstva-1.0.so.0
+rm -f %{buildroot}/%{_libdir}/libgstva-1.0.so.0.1901.0
+rm -f %{buildroot}/%{_libdir}/pkgconfig/gstreamer-play-1.0.pc
+rm -f %{buildroot}/%{_libdir}/pkgconfig/gstreamer-va-1.0.pc
+rm -f %{buildroot}/%{_datadir}/gir-1.0/GstPlay-1.0.gir
+
+
 rm -rf   %{buildroot}/%{_datadir}/locale/
 #
 
@@ -478,6 +506,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Sun Jun 20 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.1-7
+- Updated to 1.19.1
 
 * Tue Apr 20 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.4-7
 - Updated to 1.18.4
