@@ -7,8 +7,8 @@
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.19.1
-Release:        8%{?dist}
+Version:        1.19.2
+Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
 URL:            http://gstreamer.freedesktop.org/
@@ -128,7 +128,7 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
     -D chromaprint=disabled -D curl=disabled -D fdkaac=disabled \
     -D fluidsynth=disabled -D gme=disabled -D gsm=disabled \
     -D lrdf=disabled -D ladspa=disabled -D microdns=disabled \
-    -D modplug=disabled -D openjpeg=disabled -D sndfile=disabled \
+    -D modplug=disabled -D sndfile=disabled \
     -D ofa=disabled -D openal=disabled -D openexr=disabled \
     -D openmpt=disabled -D opus=disabled -D rsvg=disabled \
     -D soundtouch=disabled -D spandsp=disabled -D srt=disabled \
@@ -478,6 +478,12 @@ rm -f %{buildroot}/%{_libdir}/pkgconfig/gstreamer-play-1.0.pc
 rm -f %{buildroot}/%{_libdir}/pkgconfig/gstreamer-va-1.0.pc
 rm -f %{buildroot}/%{_datadir}/gir-1.0/GstPlay-1.0.gir
 
+# already in bad-free
+rm -f %{buildroot}/%{_libdir}/libgstplay-1.0.so.*
+rm -f %{buildroot}/%{_libdir}/libgstva-1.0.so.*
+rm -f %{buildroot}/%{_libdir}/gstreamer-1.0/libgstaes.so
+rm -f %{buildroot}/%{_libdir}/gstreamer-1.0/libgstopenjpeg.so
+rm -f %{buildroot}/%{_includedir}/gstreamer-1.0/gst/webrtc/sctptransport.h
 
 rm -rf   %{buildroot}/%{_datadir}/locale/
 #
@@ -506,6 +512,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Mon Oct 04 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.2-7
+- Updated to 1.19.2
 
 * Fri Sep 10 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.1-8
 - Rebuilt for mjpegtools
