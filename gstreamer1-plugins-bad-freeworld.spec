@@ -3,11 +3,15 @@
 %global extdirs ext/dts ext/faad ext/libmms ext/mpeg2enc ext/mplex ext/rtmp ext/voamrwbenc ext/x265/ ext/openh264/ ext/dts/ ext/rtmp/
 %define _legacy_common_support 1
 
+%global         meson_conf      meson --buildtype=release --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc
+
+%global debug_package %{nil}
+
 %global         majorminor 1.0
 
 Summary:        GStreamer %{majorminor} streaming media framework "bad" plug-ins
 Name:           gstreamer1-plugins-bad-freeworld
-Version:        1.19.2
+Version:        1.19.3
 Release:        7%{?dist}
 License:        LGPLv2+
 Group:          Applications/Multimedia
@@ -102,14 +106,14 @@ operate on media data.
 #export OPENH264_LIBS="-L%{_libdir} -lopenh264"
 #export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
 
-meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=%{_includedir} --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc \
+%meson_conf _build \
     -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
     -D package-origin="https://unitedrpms.github.io" \
     -D doc=disabled -D faac=disabled -D msdk=disabled \
     -D dts=enabled -D faad=enabled -D bluez=disabled \
     -D libmms=enabled -D mpeg2enc=enabled -D mplex=enabled \
     -D neon=disabled -D rtmp=enabled -D rtmp2=disabled \
-    -D flite=disabled -D sbc=disabled  \
+    -D flite=disabled -D sbc=disabled  -Dgpl=enabled \
     -D voamrwbenc=enabled -D x265=enabled -D opencv=disabled \
     -D dvbsuboverlay=enabled -D dvdspu=enabled -D siren=enabled \
     -D real=disabled -D opensles=disabled -D tinyalsa=disabled \
@@ -139,10 +143,10 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
     %endif
     -D openssl=disabled
 
-%meson_build -C build
+%meson_build -C _build
 
 %install
-%meson_install -C build
+%meson_install -C _build 
 
    
 # Files exist in gstreamer1-plugins-bad-free, we don't need it here   
@@ -501,7 +505,7 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 # Plugins with external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstdtsdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaad.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmms.so
+#{_libdir}/gstreamer-%{majorminor}/libgstmms.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpeg2enc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmplex.so
 %{_libdir}/gstreamer-%{majorminor}/libgstrtmp.so
@@ -512,6 +516,9 @@ rm -rf   %{buildroot}/%{_datadir}/locale/
 %{_libdir}/gstreamer-%{majorminor}/libgstopenh264.so
 
 %changelog
+
+* Wed Nov 17 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.3-7
+- Updated to 1.19.3
 
 * Mon Oct 04 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.2-7
 - Updated to 1.19.2
